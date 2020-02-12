@@ -1,8 +1,6 @@
-import pygame
 import pyglet
+from pyglet.window import key
 window = pyglet.window.Window()
-def update (dt):
-    pass
 
 
 
@@ -11,11 +9,17 @@ cavimg = pyglet.image.load('assets/forest-assets/cave.png')
 floor = pyglet.image.load('assets/forest-assets/floor.png')
 stairs= pyglet.image.load('assets/forest-assets/stairs.png')
 door = pyglet.image.load('assets/forest-assets/door.png')
-font = pygame.font.SysFont("arial", 72)
+label = pyglet.text.Label( 'how is {bold True}it going', 
+                        font_name = 'italics',
+                        font_size =36,
+                        x=window.width//2, y=window.height//2,
+                        anchor_x=('center'),anchor_y=('center'))
 
-text = font.render("Hello, World", True, (0, 128, 0))
 
-
+keys = key.KeyStateHandler()
+window.push_handlers(keys)
+def update (dt):
+    pass
 
 @window.event
 def on_draw():
@@ -24,8 +28,14 @@ def on_draw():
     cavimg.blit(200,250)
     floor.blit(300,200)
     stairs.blit(400,100)
+    if keys[key.RIGHT]:
+        stairs.blit(400,100)
     door.blit(500,100)
-    win.blit(text, (400, 300))
+
+    if keys[key.SPACE]:
+        label.draw()
+
+    
     
   
 
