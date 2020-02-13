@@ -14,30 +14,39 @@ label = pyglet.text.Label( 'how is {bold True}it going',
                         font_size =36,
                         x=window.width//2, y=window.height//2,
                         anchor_x=('center'),anchor_y=('center'))
+spr = pyglet.sprite.Sprite(door,x=0, y=200)
+ 
 
 
-keys = key.KeyStateHandler()
-window.push_handlers(keys)
+keys = pyglet.window.key.KeyStateHandler()
+
 def update (dt):
-    pass
+   window.push_handlers(keys)
+   if keys[pyglet.window.key.UP]:
+        spr.x +=1
+    
+
+        
 
 @window.event
 def on_draw():
     window.clear()
+    
     image.blit(100,150)
     cavimg.blit(200,250)
     floor.blit(300,200)
     stairs.blit(400,100)
-    if keys[key.RIGHT]:
-        stairs.blit(400,100)
-    door.blit(500,100)
 
+    door.blit(500,100)
+    spr.draw()
+    
     if keys[key.SPACE]:
         label.draw()
+        print("spacebar pressed!")
 
     
     
   
 
-
+pyglet.clock.schedule(update)
 pyglet.app.run()
