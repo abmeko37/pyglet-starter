@@ -34,7 +34,7 @@ def update (dt):
     min_x = -spr.image.width / 2
 
     max_x = 700 + spr.image.width / 2
-    min = spr.image.width - 700
+    
    
     print(life)
     window.push_handlers(keys)
@@ -48,8 +48,7 @@ def update (dt):
         print (life)
     if spr.x < min_x:
         spr.x = max_x
-    if spr.x > 700:
-        spr.x = min
+    
 
     
 
